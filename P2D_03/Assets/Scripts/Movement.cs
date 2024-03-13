@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public CharacterController Controller;
-    public Character Character;
+    public CharacterController controller;
+    public Character character;
+    public Animator animator;
 
     public Vector2 speed = new Vector2();
     public Vector2 moveDir = new Vector2();
@@ -14,7 +15,7 @@ public class Movement : MonoBehaviour
 
     public void Start()
     {
-        Character.Animator.SetBool("Ready", true);
+        character.Animator.SetBool("Ready", true);
     }
 
     public void Update()
@@ -24,16 +25,11 @@ public class Movement : MonoBehaviour
         var direction = new Vector2(horizontal, vertical);
 
         Move(direction);
-
-        //if (Input.GetKeyDown(KeyCode.D))
-        //{
-        //    Character.SetState(CharacterState.DeathB);
-        //}
     }
 
     public void Move(Vector2 direction)
     {
-        if (Controller.isGrounded)
+        if (controller.isGrounded)
         {
             moveDir = new Vector3(speed.x * direction.x, speed.y * direction.y);
 
@@ -43,28 +39,28 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if (Controller.isGrounded)
+        if (controller.isGrounded)
         {
             if (direction != Vector2.zero)
             {
-                Character.SetState(CharacterState.Run);
+                character.SetState(CharacterState.Run);
             }
-            else if (Character.GetState() < CharacterState.DeathB)
+            else if (character.GetState() < CharacterState.DeathB)
             {
-                Character.SetState(CharacterState.Idle);
+                character.SetState(CharacterState.Idle);
             }
         }
         else
         {
-            Character.SetState(CharacterState.Jump);
+            character.SetState(CharacterState.Jump);
         }
 
         moveDir.y -= gravity * Time.deltaTime; // Depends on project physics settings
-        Controller.Move(moveDir * Time.deltaTime);
+        controller.Move(moveDir * Time.deltaTime);
     }
 
     public void Turn(float direction)
     {
-        Character.transform.localScale = new Vector3(Mathf.Sign(direction), 1, 1);
+        character.transform.localScale = new Vector3(Mathf.Sign(direction), 1, 1);
     }
 }
