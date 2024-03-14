@@ -3,7 +3,6 @@ using UnityEngine;
 public class StateMachine : MonoBehaviour
 {
     public string customName;
-
     private State mainStateType;
 
     public State CurrentState { get; private set; }
@@ -14,7 +13,6 @@ public class StateMachine : MonoBehaviour
     {
         if (nextState != null)
         {
-            Debug.Log(nextState.ToString() + " 3");
             SetState(nextState);
         }
 
@@ -24,7 +22,6 @@ public class StateMachine : MonoBehaviour
 
     private void SetState(State _newState)
     {
-        Debug.Log("setnext");
         nextState = null;
         if (CurrentState != null)
         {
@@ -61,15 +58,12 @@ public class StateMachine : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("awake");
         SetNextStateToMain();
-
     }
 
 
     private void OnValidate()
     {
-        Debug.Log("Valid");
         if (mainStateType == null)
         {
             if (customName == "Combat")

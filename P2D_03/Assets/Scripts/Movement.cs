@@ -61,6 +61,6 @@ public class Movement : MonoBehaviour
 
     public void Turn(float direction)
     {
-        character.transform.localScale = new Vector3(Mathf.Sign(direction), 1, 1);
+        animator.transform.localScale = new Vector3(Mathf.Sign(direction), 1, 1);
     }
 }
