@@ -12,6 +12,9 @@ public class EnemyAI : MonoBehaviour
     public float speed;
     public Transform target;
 
+    [Header("Attack")]
+    public bool isCanAttack = false;
+
     void Start()
     {
 
@@ -22,38 +25,42 @@ public class EnemyAI : MonoBehaviour
         //Move
         if (CanMoveToTarget() && enemyStateMachine.CurrentState.GetType() == typeof(IdleState))
         {
-            EnemyMovementState enemyMovementState = new EnemyMovementState(rgbd, animator, target, speed);
+            Debug.Log("1111");
+            EnemyMovementState enemyMovementState = new EnemyMovementState(this, rgbd, animator, target, speed);
             enemyStateMachine.SetNextState(enemyMovementState);
-        }
-        else if (!CanMoveToTarget() && enemyStateMachine.CurrentState.GetType() != typeof(IdleState))
-        {
-            animator.SetTrigger("Idle");
-            enemyStateMachine.SetNextState(new IdleState());
         }
 
         //Attack
-        //if (CanAttack() && enemyStateMachine.CurrentState.GetType() == typeof(IdleState))
-        //{
-        //    EnemyAttackState enemyAttackState = new EnemyAttackState(animator);
-        //    enemyStateMachine.SetNextState(enemyAttackState);
-        //}
-        //else if(!CanAttack() && enemyStateMachine.CurrentState.GetType() != typeof(IdleState))
-        //{
-        //    animator.SetTrigger("Idle");
-        //    enemyStateMachine.SetNextState(new IdleState());
-        //}
+        if (CanAttack() && enemyStateMachine.CurrentState.GetType() == typeof(IdleState) )
+        {
+            Debug.Log("2222");
+            EnemyAttackState enemyAttackState = new EnemyAttackState(this, animator);
+            enemyStateMachine.SetNextState(enemyAttackState);
+        }
+
+        FlipModel();
     }
 
-    private bool CanMoveToTarget()
+    public bool CanMoveToTarget()
     {
         float distance = Vector3.Distance(transform.position, target.position);
 
-        return distance < 10f && distance > 5f;
+        return distance < 10f && distance > 3f;
     }
 
-    private bool CanAttack()
+    public bool CanAttack()
     {
         float distance = Vector3.Distance(transform.position, target.position);
         return distance < 3f;
+    }
+
+    public void FlipModel()
+    {
+        Vector3 direction = this.target.position - this.animator.transform.position;
+
+        float x = -Mathf.Sign(direction.x) * Mathf.Abs(animator.transform.localScale.x);
+        float y = animator.transform.localScale.y;
+        float z = animator.transform.localScale.z;
+        animator.transform.localScale = new Vector3(x,y,z);
     }
 }

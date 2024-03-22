@@ -199,7 +199,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.5, y: 4}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -329,8 +329,9 @@ MonoBehaviour:
   rgbd: {fileID: 214229369}
   animator: {fileID: 2380939431051508371}
   enemyStateMachine: {fileID: 229451714}
-  speed: 0.05
+  speed: 0.02
   target: {fileID: 668495929}
+  isCanAttack: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,12 +768,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb4b2a21e369814b8b3b7265961c944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 668495928}
   character: {fileID: 989568986114916299}
   animator: {fileID: 972621030378716325}
-  speed: {x: 5, y: 10}
-  moveDir: {x: 0, y: 0}
-  gravity: 25
+  characterController: {fileID: 668495928}
+  speed: 7
+  gravityMultiplier: 4
+  jumpPower: 20
 --- !u!1 &2145245614
 GameObject:
   m_ObjectHideFlags: 0
@@ -25897,7 +25898,7 @@ Animator:
   m_GameObject: {fileID: 2380939431051508373}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6611fd19c881c1042b7e52faf1d7e77b, type: 2}
+  m_Controller: {fileID: 9100000, guid: f1a411d8c1710b3489bffe970d4d58c6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

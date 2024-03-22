@@ -8,9 +8,11 @@ public class EnemyMovementState : State
     public Animator animator;
     public Transform target;
     public float speed;
+    public EnemyAI enemyAI;
 
-    public EnemyMovementState(Rigidbody rigidbody, Animator animator, Transform target, float speed)
+    public EnemyMovementState(EnemyAI enemyAI, Rigidbody rigidbody, Animator animator, Transform target, float speed)
     {
+        this.enemyAI = enemyAI;
         this.rigidbody = rigidbody;
         this.animator = animator;
         this.target = target;
@@ -20,7 +22,7 @@ public class EnemyMovementState : State
     public override void OnEnter(StateMachine _stateMachine)
     {
         base.OnEnter(_stateMachine);
-        Debug.Log("a");
+        Debug.Log("Enter Move");
         animator.SetTrigger("Walk");
     }
 
@@ -29,6 +31,13 @@ public class EnemyMovementState : State
         base.OnUpdate();
 
         Moving();
+
+        if (!enemyAI.CanMoveToTarget())
+        {
+            Debug.Log("Enter Idle move");
+            animator.SetTrigger("Idle");
+            stateMachine.SetNextStateToMain();
+        }
     }
 
     public void Moving()

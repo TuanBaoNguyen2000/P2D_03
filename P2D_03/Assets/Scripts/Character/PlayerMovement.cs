@@ -5,62 +5,77 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
     public Character character;
     public Animator animator;
 
-    public Vector2 speed = new Vector2();
-    public Vector2 moveDir = new Vector2();
-    public float gravity = 25f;
+    [SerializeField] private CharacterController characterController;
+    [SerializeField] private float speed;
+    private Vector3 direction;
 
-    public void Start()
+
+    private float gravity = -9.81f;
+    [SerializeField] private float gravityMultiplier = 3.0f;
+    private float velocity;
+
+    [SerializeField] private float jumpPower;
+
+    private void Update()
     {
-        character.Animator.SetBool("Ready", true);
+        ApplyGravity();
+        HandleMove();
+        HandleJump();
+        ApplyMovement();
+
+        TurnModel(direction.x);
     }
 
-    public void Update()
+    private void ApplyGravity()
+    {
+        if (IsGrounded() && velocity < 0.0f)
+            velocity = -1.0f;
+        else
+            velocity += gravity * gravityMultiplier * Time.deltaTime;
+
+        direction.y = velocity;
+    }
+
+    private void ApplyMovement()
+    {
+        characterController.Move(direction * Time.deltaTime);
+    }
+
+    public void HandleMove()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        var direction = new Vector2(horizontal, vertical);
+        direction.x = horizontal * speed;
 
-        Move(direction);
+        if (horizontal != 0 && IsGrounded())
+            character.SetState(CharacterState.Run);
+        else if (character.GetState() < CharacterState.DeathB)
+            character.SetState(CharacterState.Idle);
     }
 
-    public void Move(Vector2 direction)
+    public void HandleJump()
     {
-        if (controller.isGrounded)
-        {
-            moveDir = new Vector3(speed.x * direction.x, speed.y * direction.y);
-
-            if (direction != Vector2.zero)
-            {
-                Turn(moveDir.x);
-            }
-        }
-
-        if (controller.isGrounded)
-        {
-            if (direction != Vector2.zero)
-            {
-                character.SetState(CharacterState.Run);
-            }
-            else if (character.GetState() < CharacterState.DeathB)
-            {
-                character.SetState(CharacterState.Idle);
-            }
-        }
-        else
+        if (!IsGrounded())
         {
             character.SetState(CharacterState.Jump);
+            return;
         }
 
-        moveDir.y -= gravity * Time.deltaTime; // Depends on project physics settings
-        controller.Move(moveDir * Time.deltaTime);
+        bool isJump = Input.GetKeyDown(KeyCode.W);
+        if (!isJump) return;
+
+
+        velocity += jumpPower;
     }
 
-    public void Turn(float direction)
+    private bool IsGrounded() => characterController.isGrounded;
+
+
+    public void TurnModel(float direction)
     {
+        if (direction == 0) return;
         animator.transform.localScale = new Vector3(Mathf.Sign(direction), 1, 1);
     }
 }
