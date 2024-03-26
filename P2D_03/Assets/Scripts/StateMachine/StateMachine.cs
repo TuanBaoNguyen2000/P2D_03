@@ -56,7 +56,7 @@ public abstract class StateMachine : MonoBehaviour
         nextState = mainStateType;
     }
 
-    private void Awake()
+    private void Start()
     {
         SetNextStateToMain();
     }

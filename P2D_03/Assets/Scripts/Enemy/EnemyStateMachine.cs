@@ -10,7 +10,7 @@ public class EnemyStateMachine : StateMachine
             mainStateType = new IdleState();
     }
 
-    private void OnValidate()
+    private void Awake()
     {
         SetMainState();
     }

@@ -17,7 +17,7 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
-
+        target = GameObject.Find("MainChar").transform;
     }
 
     void Update()
@@ -25,7 +25,6 @@ public class EnemyAI : MonoBehaviour
         //Move
         if (CanMoveToTarget() && enemyStateMachine.CurrentState.GetType() == typeof(IdleState))
         {
-            Debug.Log("1111");
             EnemyMovementState enemyMovementState = new EnemyMovementState(this, rgbd, animator, target, speed);
             enemyStateMachine.SetNextState(enemyMovementState);
         }
@@ -33,7 +32,6 @@ public class EnemyAI : MonoBehaviour
         //Attack
         if (CanAttack() && enemyStateMachine.CurrentState.GetType() == typeof(IdleState) )
         {
-            Debug.Log("2222");
             EnemyAttackState enemyAttackState = new EnemyAttackState(this, animator);
             enemyStateMachine.SetNextState(enemyAttackState);
         }
