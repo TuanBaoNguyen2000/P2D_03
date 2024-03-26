@@ -10,9 +10,16 @@ public class MeleeBaseState : State
     protected bool shouldCombo = false;
     protected int attackIndex;
 
+    protected Transform vfxSpawnPoint;
+
     public void SetAnimator(Animator animator)
     { 
         this.animator = animator; 
+    }
+
+    public void SetVfxSpawnPoint(Transform vfxSpawnPoint)
+    {
+        this.vfxSpawnPoint = vfxSpawnPoint;
     }
 
     public override void OnEnter(StateMachine _stateMachine)

@@ -6,13 +6,12 @@ public class ComboCharacter : MonoBehaviour
 {
     public Animator animator;
     public StateMachine meleeStateMachine;
-
     public CharacterController characterController;
-    public GameObject flashVFX;
+    public Transform vfxSpawnPoint;
 
     void Start()
     {
-        //meleeStateMachine = GetComponent<StateMachine>();
+        
     }
 
     void Update()
@@ -21,12 +20,13 @@ public class ComboCharacter : MonoBehaviour
         {
             GroundEntryState groundEntryState = new GroundEntryState();
             groundEntryState.SetAnimator(animator);
+            groundEntryState.SetVfxSpawnPoint(vfxSpawnPoint);
             meleeStateMachine.SetNextState(groundEntryState);
         }
 
         if (Input.GetMouseButtonDown(1) && meleeStateMachine.CurrentState.GetType() == typeof(IdleState))
         {
-            DashState dashState = new DashState(characterController, animator, flashVFX);
+            DashState dashState = new DashState(characterController, animator);
             meleeStateMachine.SetNextState(dashState);
         }
     }
