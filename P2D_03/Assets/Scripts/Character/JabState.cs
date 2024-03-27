@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundComboState : MeleeBaseState
+public class JabState : MeleeBaseState
 {
     private AnimationEvents animationEvents;
     private Transform jabVFX;
@@ -13,14 +13,13 @@ public class GroundComboState : MeleeBaseState
         base.OnEnter(_stateMachine);
 
         //Attack
-        attackIndex = 2;
         duration = 0.75f;
-        animator.SetTrigger("Attack" + attackIndex);
+        animator.SetTrigger("Jab");
 
         animationEvents = animator.GetComponent<AnimationEvents>();
         if (animationEvents != null) animationEvents.OnCustomEvent += OnAnimationEvent;
 
-        Debug.Log("Player Attack " + attackIndex + " Fired!");
+        Debug.Log("Player Jab Fired!");
     }
 
     private void OnAnimationEvent(string eventName)
@@ -51,10 +50,10 @@ public class GroundComboState : MeleeBaseState
 
             if (shouldCombo)
             {
-                GroundFinisherState groundFinisherState = new GroundFinisherState();
-                groundFinisherState.SetAnimator(animator);
-                groundFinisherState.SetVfxSpawnPoint(vfxSpawnPoint);
-                stateMachine.SetNextState(groundFinisherState);
+                BackSlashState backSlashState = new BackSlashState();
+                backSlashState.SetAnimator(animator);
+                backSlashState.SetVfxSpawnPoint(vfxSpawnPoint);
+                stateMachine.SetNextState(backSlashState);
             }
             else
             {

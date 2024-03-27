@@ -18,10 +18,10 @@ public class ComboCharacter : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && meleeStateMachine.CurrentState.GetType() == typeof(IdleState))
         {
-            GroundEntryState groundEntryState = new GroundEntryState();
-            groundEntryState.SetAnimator(animator);
-            groundEntryState.SetVfxSpawnPoint(vfxSpawnPoint);
-            meleeStateMachine.SetNextState(groundEntryState);
+            SlashState SlashState = new SlashState();
+            SlashState.SetAnimator(animator);
+            SlashState.SetVfxSpawnPoint(vfxSpawnPoint);
+            meleeStateMachine.SetNextState(SlashState);
         }
 
         if (Input.GetMouseButtonDown(1) && meleeStateMachine.CurrentState.GetType() == typeof(IdleState))

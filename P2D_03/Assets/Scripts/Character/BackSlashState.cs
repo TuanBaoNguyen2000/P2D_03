@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundFinisherState : MeleeBaseState
+public class BackSlashState : MeleeBaseState
 {
     private AnimationEvents animationEvents;
     private Transform backSlashVFX;
@@ -13,14 +13,13 @@ public class GroundFinisherState : MeleeBaseState
         base.OnEnter(_stateMachine);
 
         //Attack
-        attackIndex = 3;
         duration = 0.75f;
-        animator.SetTrigger("Attack" + attackIndex);
+        animator.SetTrigger("BackSlash");
 
         animationEvents = animator.GetComponent<AnimationEvents>();
         if (animationEvents != null) animationEvents.OnCustomEvent += OnAnimationEvent;
 
-        Debug.Log("Player Attack " + attackIndex + " Fired!");
+        Debug.Log("Player BackSlash Fired!");
     }
 
     private void OnAnimationEvent(string eventName)

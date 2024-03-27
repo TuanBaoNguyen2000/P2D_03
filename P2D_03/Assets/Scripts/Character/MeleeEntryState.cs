@@ -8,7 +8,7 @@ public class MeleeEntryState : State
     {
         base.OnEnter(_stateMachine);
 
-        State nextState = (State)new GroundEntryState();
+        State nextState = (State)new SlashState();
         stateMachine.SetNextState(nextState);
     }
 }

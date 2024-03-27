@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundEntryState : MeleeBaseState
+public class SlashState : MeleeBaseState
 {
     private AnimationEvents animationEvents;
     private Transform slashVFX;
@@ -13,14 +13,13 @@ public class GroundEntryState : MeleeBaseState
         base.OnEnter(_stateMachine);
 
         //Attack
-        attackIndex = 1;
         duration = 0.75f;
-        animator.SetTrigger("Attack" + attackIndex);
+        animator.SetTrigger("Slash");
 
         animationEvents = animator.GetComponent<AnimationEvents>();
         if (animationEvents != null) animationEvents.OnCustomEvent += OnAnimationEvent; 
 
-        Debug.Log("Player Attack " + attackIndex + " Fired!");
+        Debug.Log("Player Slash Fired!");
     }
 
     private void OnAnimationEvent(string eventName)
@@ -51,10 +50,10 @@ public class GroundEntryState : MeleeBaseState
 
             if (shouldCombo)
             {
-                GroundComboState groundComboState = new GroundComboState();
-                groundComboState.SetAnimator(animator);
-                groundComboState.SetVfxSpawnPoint(vfxSpawnPoint);
-                stateMachine.SetNextState(groundComboState);
+                JabState JabState = new JabState();
+                JabState.SetAnimator(animator);
+                JabState.SetVfxSpawnPoint(vfxSpawnPoint);
+                stateMachine.SetNextState(JabState);
             }
             else
             {

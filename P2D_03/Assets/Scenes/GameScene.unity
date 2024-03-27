@@ -184,13 +184,13 @@ GameObject:
   - component: {fileID: 214229368}
   - component: {fileID: 214229370}
   - component: {fileID: 214229369}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &214229368
 Transform:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 229451713}
   - component: {fileID: 229451715}
   - component: {fileID: 229451714}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26317,7 +26317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2380939430114830136}
   - component: {fileID: 2380939430114830135}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26399,7 +26399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2380939430531371589}
   - component: {fileID: 2380939430531371588}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegFrontL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26481,7 +26481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2380939430587874358}
   - component: {fileID: 2380939430587874357}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegBackR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26534,7 +26534,7 @@ GameObject:
   - component: {fileID: 2380939431051508372}
   - component: {fileID: 7679631767461303679}
   - component: {fileID: 2380939431051508371}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26625,7 +26625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2380939431225699396}
   - component: {fileID: 2380939431225699395}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26707,7 +26707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2380939431745021099}
   - component: {fileID: 2380939431745021098}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegFrontR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26789,7 +26789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2380939431989987234}
   - component: {fileID: 2380939431989987233}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegBackL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26871,7 +26871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2380939432016182865}
   - component: {fileID: 2380939432016182864}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26887,7 +26887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3014526596108275528}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AnchorWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26904,7 +26904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2229913346760043703}
   - component: {fileID: 8686559106717480609}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29320,7 +29320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3658542310725039726}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AnchorStatus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29350,7 +29350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5196721253902249273}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AnchorBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
